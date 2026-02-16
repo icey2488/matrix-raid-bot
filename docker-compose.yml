@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  raidbot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - raid_data:/app/data
+
+volumes:
+  raid_data:
