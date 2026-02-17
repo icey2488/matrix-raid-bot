@@ -1,39 +1,50 @@
-# ⚔️ Matrix Raid Attendance Bot
+# matrix-raid-bot
 
-[![Linting Status](https://github.com/icey2488/matrix-raid-bot/actions/workflows/lint.yml/badge.svg)](https://github.com/icey2488/matrix-raid-bot/actions)
-
-A professional-grade Matrix bot for WoW Guilds, featuring automatic scheduling, character verification via Warcraft Logs, and real-time attendance tracking with class-colored UI.
+A modular Matrix bot for managing World of Warcraft raid signups, attendance, and roster validation. Built for operational automation and open-source scalability.
 
 ---
 
-## ✨ Features
-
-* **Verified Rosters:** Link Matrix accounts to WoW characters via Warcraft Logs V2 API.
-* **Auto-Scheduling:** Automatically posts raid matrices 7 days before the start time.
-* **Smart UI:** Uses HTML formatting for a clean "wowaudit" look with official Blizzard class colors.
-* **Auto-Locking:** Signups close automatically exactly when the raid starts.
-* **Robust Storage:** Powered by SQLite with Docker persistence.
+## 🧱 Architecture Overview
+matrix_raid_bot/ ├── commands/         # Handles bot commands (signup, roster, attendance) ├── database/         # SQLite persistence layer ├── services/         # External integrations (WoWAudit, WCL, scheduler) ├── util/             # Formatting and Matrix helpers ├── entrypoint.py     # Main wiring for services and commands ├── Dockerfile        # Containerized deployment ├── docker-compose.yml ├── requirements.txt
 
 ---
 
-## 🏗 System Architecture
+## 🚀 Getting Started
 
+### 1. Clone and install dependencies
 
-
-The bot utilizes an asynchronous event loop to handle Matrix messages and reactions, while a background task monitors the SQLite database to manage raid lifecycle events.
-
----
-
-## 🚀 Quick Start
-
-### 1. Prerequisites
-* A Matrix account for the bot (User ID and Password).
-* A [Warcraft Logs API Client](https://www.warcraftlogs.com/api/clients/).
-* Docker & Docker Compose installed.
-
-### 2. Configuration
-Clone the repository and create your environment file:
 ```bash
-git clone [https://github.com/yourusername/matrix-raid-bot.git](https://github.com/yourusername/matrix-raid-bot.git)
+git clone https://github.com/yourname/matrix-raid-bot.git
 cd matrix-raid-bot
-cp .env.example .env
+pip install -r requirements.txt
+
+2. Set environment variables
+Create a .env file or export manually
+
+
+WCL_API_KEY=your_wcl_token
+WOWAUDIT_API_KEY=your_wowaudit_token
+
+3. Run the bot
+
+python matrix_raid_bot/entrypoint.py
+
+🧩 Features
+- Signup tracking: Raid signups with status updates and roster validation
+- Roster sync: Pulls guild roster from WoWAudit
+- Attendance summaries: Parses WCL logs for raid participation
+- Modular services: Easy to extend and maintain
+- SQLite backend: Lightweight and audit-friendly
+
+🛠️ Development
+Linting
+
+flake8 matrix_raid_bot/
+
+Docker
+docker-compose up --build
+
+📄 License
+MIT — see LICENSE
+
+
