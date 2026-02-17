@@ -1,5 +1,9 @@
-from .base import command, CommandContext
+from matrix_raid_bot.services.wowaudit import WoWAuditService
 
-@command("roster")
-async def roster_cmd(ctx: CommandContext):
-    await ctx.services.matrix.send_text(ctx.room_id, "Roster command placeholder.")
+
+class RosterCommand:
+    def __init__(self, audit: WoWAuditService) -> None:
+        self.audit = audit
+
+    async def fetch_roster(self, guild_id: str) -> dict:
+        return await self.audit.get_roster(guild_id)
