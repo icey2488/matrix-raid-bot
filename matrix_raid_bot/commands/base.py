@@ -1,5 +1,7 @@
+
 from dataclasses import dataclass
 from typing import Awaitable, Callable, Dict, Protocol
+from matrix_raid_bot.client import ServiceContainer
 
 
 @dataclass
@@ -8,7 +10,7 @@ class CommandContext:
     sender: str
     body: str
     args: list[str]
-    services: "ServiceContainer"
+    services: ServiceContainer
 
 
 class CommandHandler(Protocol):

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Optional
 
 from .database.sqlite import Database
-from .services.wowaudit import WoWAuditClient
+from .services.wowaudit import WoWAuditService
 from .util.matrix_helpers import MatrixService
 
 
@@ -10,5 +10,5 @@ from .util.matrix_helpers import MatrixService
 class ServiceContainer:
     matrix: MatrixService
     db: Database
-    wowaudit: Optional[WoWAuditClient]
+    wowaudit: Optional[WoWAuditService]
     default_room_id: str

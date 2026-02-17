@@ -66,7 +66,7 @@ class Database:
         name: str,
         start_time: str,
         signup_message_event_id: Optional[str] = None,
-    ) -> int:
+    ) -> Optional[int]:
         with self._conn() as conn:
             cur = conn.cursor()
             cur.execute(
